@@ -4,4 +4,9 @@
 
 int main() {
 	FileWrite("test message", "Test key", "test.txt");
+
+	FILE* fp = fopen("test.txt", "r");
+	fseek(fp, 0L, SEEK_END);
+	printf("%d", ftell(fp));
+	fclose(fp);
 }
