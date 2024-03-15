@@ -36,3 +36,24 @@ bool FileWrite(DATA data) {
 	fclose(fp);
 	return true;
 }
+
+int FileSize(DATA data) {
+	FILE* fp = fopen(data.fileName, "r");
+	fseek(fp, 0L, SEEK_END);
+	int size = ftell(fp);
+	fclose(fp);
+	return size;
+}
+
+bool FileEmpty(DATA data) {
+	FILE* fp = fopen(data.fileName, "r");
+	fseek(fp, 0L, SEEK_END);
+	int size = ftell(fp);
+	fclose(fp);
+	if (size == 0) {
+		return true;
+	}
+	if (size != 0) {
+		return false;
+	}
+}
