@@ -3,57 +3,38 @@
 #include "File Handling.h"
 #include <stdio.h>
 
-
-bool FileRead(DATA data) {
+bool FileRead(FILE_DATA* data) {
 	FILE* fp;
-	fp = fopen(data.fileName, "r");
+	fp = fopen(data->fileName, "r");
 	if (fp == NULL) {
 		printf("Could not open file.\n");
 		return false;
 	}
-	for (int i = 0; i < 100; i++) {
-		for (int j = 0; j < 100; j++) {
-			data.message[i][j] = fgetc(fp);
+	for (int i = 0; i < data->numberOfChunks; i++) {
+		for (int j = 0; j < data->sizeOfChunks; j++) {
+			int c = fgetc(fp);
 			if (feof(fp)) {
+				data->fileText[i][j] = '\0';
 				break;
 			}
+			data->fileText[i][j] = (char) c;
 		}
+		data->fileText[i][data->sizeOfChunks] = '\0';
 	}
+
 	fclose(fp);
 	return true;
 }
 
-bool FileWrite(DATA data) {
+
+
+bool FileWrite(FILE_DATA* fd) {
 	FILE* fp;
-	fp = fopen(data.fileName, "w");
+	fp = fopen("output.txt", "w");
 	if (fp == NULL) {
-		printf("Could not open file.\n");
 		return false;
 	}
-	fprintf(fp, data.key);
-	fprintf(fp, "\n");
-	fprintf(fp, data.message);
+	fprintf(fp, fd->fileText);
 	fclose(fp);
 	return true;
-}
-
-int FileSize(DATA data) {
-	FILE* fp = fopen(data.fileName, "r");
-	fseek(fp, 0L, SEEK_END);
-	int size = ftell(fp);
-	fclose(fp);
-	return size;
-}
-
-bool FileEmpty(DATA data) {
-	FILE* fp = fopen(data.fileName, "r");
-	fseek(fp, 0L, SEEK_END);
-	int size = ftell(fp);
-	fclose(fp);
-	if (size == 0) {
-		return true;
-	}
-	if (size != 0) {
-		return false;
-	}
 }
