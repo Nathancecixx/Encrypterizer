@@ -4,56 +4,39 @@
 #include <stdio.h>
 
 
-bool FileRead(DATA data) {
-	FILE* fp;
-	fp = fopen(data.fileName, "r");
-	if (fp == NULL) {
-		printf("Could not open file.\n");
-		return false;
-	}
-	for (int i = 0; i < 100; i++) {
-		for (int j = 0; j < 100; j++) {
-			data.message[i][j] = fgetc(fp);
-			if (feof(fp)) {
-				break;
-			}
-		}
-	}
-	fclose(fp);
-	return true;
+bool WriteToFile(PDATA dataPackage, char fileName[]) {
+    FILE* fp = fopen(fileName, "w");
+    if (fp == NULL) {
+        printf("Error creating file\n");
+        return false;
+    }
+    fprintf(fp, "%d", dataPackage->isEncrypted);
+    fprintf(fp, "\n");
+    fprintf(fp, "%s", dataPackage->password);
+    fprintf(fp, "\n");
+    fprintf(fp, "%s", dataPackage->text);
+    fclose(fp);
+    return true;
 }
 
-bool FileWrite(DATA data) {
-	FILE* fp;
-	fp = fopen(data.fileName, "w");
-	if (fp == NULL) {
-		printf("Could not open file.\n");
-		return false;
-	}
-	fprintf(fp, data.key);
-	fprintf(fp, "\n");
-	fprintf(fp, data.message);
-	fclose(fp);
-	return true;
-}
-
-int FileSize(DATA data) {
-	FILE* fp = fopen(data.fileName, "r");
-	fseek(fp, 0L, SEEK_END);
-	int size = ftell(fp);
-	fclose(fp);
-	return size;
-}
-
-bool FileEmpty(DATA data) {
-	FILE* fp = fopen(data.fileName, "r");
-	fseek(fp, 0L, SEEK_END);
-	int size = ftell(fp);
-	fclose(fp);
-	if (size == 0) {
-		return true;
-	}
-	if (size != 0) {
-		return false;
-	}
+bool ReadFromFile(PDATA dataPackage, char fileName[]) {
+    FILE* fp = fopen(fileName, "r");
+    if (fp == NULL) {
+        printf("Error opening file\n");
+        return false;
+    }
+    int num;
+    fscanf(fp, "%d", &num);
+    if (num == 0) {
+        dataPackage->isEncrypted = false;
+    }
+    else if (num == 1) {
+        dataPackage->isEncrypted = true;
+    }
+    fscanf(fp, "\n");
+    fgets(dataPackage->password, CHUNKSIZE, fp);
+    dataPackage->password[strcspn(dataPackage->password, "\n")] = '\0';
+    fgets(dataPackage->text, CHUNKSIZE * NUMBEROFCHUNK, fp);
+    fclose(fp);
+    return true;
 }
