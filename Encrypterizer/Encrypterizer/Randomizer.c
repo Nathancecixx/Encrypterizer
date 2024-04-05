@@ -1,8 +1,9 @@
 #define _CRT_SECURE_NO_WARNINGS
-
+//Liam Cabarle - Randomizer Module
 #include <stdio.h>
 #include <time.h>
 #include <string.h>
+#include "Randomizer.h"
 
 void generateRandomKey(unsigned char key[], size_t size) {
 	//Seed the random number generator with the current time

@@ -21,9 +21,15 @@
     <ClCompile Include="Randomizer.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RandomizerUnitTests.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Randomizer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomizerUnitTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

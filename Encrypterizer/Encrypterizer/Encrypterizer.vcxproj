@@ -129,9 +129,11 @@
   <ItemGroup>
     <ClCompile Include="main.c" />
     <ClCompile Include="Randomizer.c" />
+    <ClCompile Include="RandomizerUnitTests.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Randomizer.h" />
+    <ClInclude Include="RandomizerUnitTests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
