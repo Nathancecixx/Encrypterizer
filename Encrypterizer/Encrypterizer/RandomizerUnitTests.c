@@ -132,7 +132,7 @@ void testArrayFill() {
         //if array is empty = error
         if (key[i] == 0) {
             printf("Array was not filled\n");
-            exit(1);
+            exit(EXIT_FAILURE);
         }
         else { //array is filled and it prints the array
             printf("Test passed. Array was filled\n");
@@ -140,7 +140,7 @@ void testArrayFill() {
             for (size_t i = 0; i < sizeof(key); i++) {
                 printf("%c", key[i]);
             }
-            exit(1);
+            exit(EXIT_SUCCESS);
         }
     }
 }
