@@ -25,7 +25,7 @@ void testUppercaseLetters() {
         printf("Error: Key does not have an uppercase letter\n");
     }
     else {
-        printf("The key has %d uppercase letters\n", hasUppercase);
+        printf("Test passed! The key has %d uppercase letters\n", hasUppercase);
     }
 }
 //checks for lowercase letters and counts how many there are
@@ -45,7 +45,7 @@ void testLowercaseLetters() {
         printf("Error: Key does not have a lowercase letter\n");
     }
     else {
-        printf("The key has %d lowercase letters\n", hasLowercase);
+        printf("Test passed! The key has %d lowercase letters\n", hasLowercase);
     }
 }
 //checks for digits and counts how many there are
@@ -65,7 +65,7 @@ void testDigits() {
         printf("Error: Key does not have digits\n");
     }
     else {
-        printf("The key has %d digits\n", hasDigit);
+        printf("Test passed! The key has %d digits\n", hasDigit);
     }
 }
 
