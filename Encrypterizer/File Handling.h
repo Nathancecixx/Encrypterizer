@@ -1,14 +1,7 @@
 #pragma once
 #include <stdbool.h>
-#define CHUNKSIZE 16
-#define NUMBEROFCHUNK 20
+#include "Data.h"
 
-typedef struct Data {
-    char text[NUMBEROFCHUNK][CHUNKSIZE];
-    char password[CHUNKSIZE];
-    char fileName[10];
-    bool isEncrypted;
-}DATA, * PDATA;
+bool WriteToFile(FILE_DATA* fd);
 
-bool WriteToFile(PDATA dataPackage, char fileName[]);
-bool ReadFromFile(PDATA dataPackage, char fileName[]);
+bool ReadFromFile(FILE_DATA* fd);

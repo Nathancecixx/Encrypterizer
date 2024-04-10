@@ -4,39 +4,56 @@
 #include <stdio.h>
 
 
-bool WriteToFile(PDATA dataPackage, char fileName[]) {
-    FILE* fp = fopen(fileName, "w");
+bool WriteToFile(FILE_DATA* fd) {
+    FILE* fp;
+
+    if (fd->function_mode == ENCRYPT) {
+        fp = fopen("Output.bin", "wb");
+    }
+    else {
+        fp = fopen("Output.txt", "w");
+    }
+
     if (fp == NULL) {
         printf("Error creating file\n");
         return false;
     }
-    fprintf(fp, "%d", dataPackage->isEncrypted);
-    fprintf(fp, "\n");
-    fprintf(fp, "%s", dataPackage->password);
-    fprintf(fp, "\n");
-    fprintf(fp, "%s", dataPackage->text);
+    for (int i = 0; i < fd->numberOfChunks; i++) {
+        fwrite(fd->fileText[i], sizeof(char), fd->sizeOfChunks, fp);
+    }
     fclose(fp);
     return true;
 }
 
-bool ReadFromFile(PDATA dataPackage, char fileName[]) {
-    FILE* fp = fopen(fileName, "r");
+bool ReadFromFile(FILE_DATA* fd) {
+    FILE* fp;
+    
+    if (fd->function_mode == DECRYPT) {
+        fp = fopen(fd->fileName, "rb");
+    }
+    else {
+        fp = fopen(fd->fileName, "r");
+    }
+
     if (fp == NULL) {
-        printf("Error opening file\n");
+        printf("ERROR: Failed while opening file\n");
         return false;
     }
-    int num;
-    fscanf(fp, "%d", &num);
-    if (num == 0) {
-        dataPackage->isEncrypted = false;
+
+    for (int i = 0; i < fd->numberOfChunks; i++) {
+        int Bytes_Read = fread(fd->fileText[i], sizeof(char), fd->sizeOfChunks, fp);
+        fd->fileText[i][fd->sizeOfChunks] = '\0';
+        if (Bytes_Read < fd->sizeOfChunks) {
+            for (int j = Bytes_Read; j < fd->sizeOfChunks; j++) {
+                fd->fileText[i][j] = '\0';
+            }
+        }
     }
-    else if (num == 1) {
-        dataPackage->isEncrypted = true;
-    }
-    fscanf(fp, "\n");
-    fgets(dataPackage->password, CHUNKSIZE, fp);
-    dataPackage->password[strcspn(dataPackage->password, "\n")] = '\0';
-    fgets(dataPackage->text, CHUNKSIZE * NUMBEROFCHUNK, fp);
     fclose(fp);
+
+    if (fd->copy_mode == SHRED) {
+        if (!remove(fd->fileName))
+            printf("ERROR: Failed to delete original file");
+    }
     return true;
 }

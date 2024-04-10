@@ -127,11 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Data.c" />
+    <ClCompile Include="Encrypter.c" />
     <ClCompile Include="File Handling.c" />
     <ClCompile Include="Main.c" />
+    <ClCompile Include="Randomizer.c" />
+    <ClCompile Include="RandomizerUnitTests.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Data.h" />
+    <ClInclude Include="Encrypter.h" />
     <ClInclude Include="File Handling.h" />
+    <ClInclude Include="Randomizer.h" />
+    <ClInclude Include="RandomizerUnitTests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

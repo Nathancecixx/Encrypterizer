@@ -21,9 +21,33 @@
     <ClCompile Include="File Handling.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Data.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Encrypter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Randomizer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomizerUnitTests.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="File Handling.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Encrypter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Randomizer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomizerUnitTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
