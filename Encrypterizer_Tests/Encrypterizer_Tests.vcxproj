@@ -100,6 +100,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>"C:\Users\natha\OneDrive\Documents\GitHub\Section3-Group7\Encrypterizer\x64\Debug\Data.obj";"C:\Users\natha\OneDrive\Documents\GitHub\Section3-Group7\Encrypterizer\x64\Debug\Encrypter.obj";%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

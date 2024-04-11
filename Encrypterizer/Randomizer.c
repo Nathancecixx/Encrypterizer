@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <string.h>
+#include <stdlib.h>
 #include "Randomizer.h"
 
 void generateRandomKey(unsigned char key[], size_t size) {
