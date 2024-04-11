@@ -14,13 +14,7 @@
 
 
 bool InitFileData(FILE_DATA* fd, int argc, char* argv[]) {
-
-	if (argc > 6 || argc < 3) {
-		fprintf(stderr, "Error: Incorrect number of args\n");
-		return false;
-	}
-
-	// Initialize all attributes
+// Initialize all attributes
 	fd->fileName = NULL;
 	fd->fileText = NULL;
 	fd->key = NULL;
@@ -29,6 +23,12 @@ bool InitFileData(FILE_DATA* fd, int argc, char* argv[]) {
 	fd->function_mode = EMPTY;
 	fd->key_mode = EMPTY;
 	fd->copy_mode = EMPTY;
+	if (argc > 6 || argc < 3) {
+		fprintf(stderr, "Error: Incorrect number of args\n");
+		return false;
+	}
+
+	
 
 
 	/*****************
