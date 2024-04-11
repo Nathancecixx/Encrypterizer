@@ -1,8 +1,10 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 
-#include "C:\Users\natha\OneDrive\Documents\GitHub\Section3-Group7\Encrypterizer\Data.h"
-#include "C:\Users\natha\OneDrive\Documents\GitHub\Section3-Group7\Encrypterizer\Encrypter.h"
+extern "C" {
+#include "../Encrypterizer/Data.h"
+#include "../Encrypterizer/Encrypter.h"
+}
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
