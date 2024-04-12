@@ -53,21 +53,48 @@ int main(int argc, char* argv[]) {
 
 	printf("File Size: %d\n", fd.sizeOfChunks * fd.numberOfChunks);
 
-	/*
-	printf("\n\n\nBefore encryption:\n");
-	for (int i = 0; i < fd.numberOfChunks; i++) {
-		printf("%s\n", fd.fileText[i]);
-	}
-	*/
 
-	Encrypt(&fd);
+	switch (fd.function_mode) {
+	case ENCRYPT:
+		printf("\n\n\nBefore encryption:\n");
+		for (int i = 0; i < fd.numberOfChunks; i++) {
+			printf("%s\n", fd.fileText[i]);
+		}
+		Encrypt(&fd);
 
-	/*
-	printf("\n\n\nAfter encryption:\n");
-	for (int i = 0; i < fd.numberOfChunks; i++) {
-		printf("%s", fd.fileText[i]);
+		printf("\n\n\nAfter encryption:\n");
+		for (int i = 0; i < fd.numberOfChunks; i++) {
+			printf("%s", fd.fileText[i]);
+		}
+	case DECRYPT:
+		printf("\n\n\nBefore Decryption:\n");
+		for (int i = 0; i < fd.numberOfChunks; i++) {
+			printf("%s\n", fd.fileText[i]);
+		}
+		Decrypt(&fd);
+
+		printf("\n\n\nAfter Decryption:\n");
+		for (int i = 0; i < fd.numberOfChunks; i++) {
+			printf("%s", fd.fileText[i]);
+		}
 	}
-	*/
+
+
+	///*
+	//printf("\n\n\nBefore encryption:\n");
+	//for (int i = 0; i < fd.numberOfChunks; i++) {
+	//	printf("%s\n", fd.fileText[i]);
+	//}
+	//*/
+
+	//Encrypt(&fd);
+
+	///*
+	//printf("\n\n\nAfter encryption:\n");
+	//for (int i = 0; i < fd.numberOfChunks; i++) {
+	//	printf("%s", fd.fileText[i]);
+	//}
+	//*/
 	printf("\n");
 
 	if (!WriteToFile(&fd)) {
