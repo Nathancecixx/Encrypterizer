@@ -78,9 +78,9 @@ bool InitFileData(FILE_DATA* fd, int argc, char* argv[]) {
 		}
 		generateRandomKey(fd->key, passlength - 1);
 		fd->sizeOfChunks = passlength;
-		fd->key[passlength] = '\0';
+		fd->key[passlength - 1] = '\0';
 
-		printf("Your generated decryption key: %s", fd->key);
+		printf("Your generated decryption key: %s\n", fd->key);
 	}
 
 	/*********************
