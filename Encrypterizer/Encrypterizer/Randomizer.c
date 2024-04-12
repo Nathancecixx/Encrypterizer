@@ -2,6 +2,7 @@
 //Liam Cabarle - Randomizer Module
 #include <stdio.h>
 #include <time.h>
+#include <stdlib.h>
 #include <string.h>
 #include "Randomizer.h"
 
