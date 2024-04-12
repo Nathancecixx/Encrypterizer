@@ -52,7 +52,7 @@ bool ReadFromFile(FILE_DATA* fd) {
     fclose(fp);
 
     if (fd->copy_mode == SHRED) {
-        if (!remove(fd->fileName))
+        if (remove(fd->fileName) == -1)
             printf("ERROR: Failed to delete original file");
     }
     return true;

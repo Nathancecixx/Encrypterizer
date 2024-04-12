@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include "Randomizer.h"
 
-void generateRandomKey(unsigned char key[], size_t size) {
+void generateRandomKey(char key[], size_t size) {
 	//Seed the random number generator with the current time
 	srand(time(NULL));
 

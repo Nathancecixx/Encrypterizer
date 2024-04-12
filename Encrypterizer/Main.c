@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "Data.h"
 #include "File Handling.h"
@@ -32,7 +33,7 @@ int main(int argc, char* argv[]) {
 	if (!InitFileData(&fd, argc, argv)) {
 		PrintHelp();
 		DestroyFileData(&fd);
-		return 1;
+		exit(EXIT_FAILURE);
 	}
 
 	//TODO:
@@ -47,7 +48,7 @@ int main(int argc, char* argv[]) {
 	if (!ReadFromFile(&fd)) {
 		fprintf(stderr, "Error: failed to read file\n");
 		DestroyFileData(&fd);
-		return 1;
+		exit(EXIT_FAILURE);
 	}
 
 	printf("File Size: %d\n", fd.sizeOfChunks * fd.numberOfChunks);
@@ -72,7 +73,7 @@ int main(int argc, char* argv[]) {
 	if (!WriteToFile(&fd)) {
 		fprintf(stderr, "Error: failed to write file\n");
 		DestroyFileData(&fd);
-		return 1;
+		exit(EXIT_FAILURE);
 	}
 
 	DestroyFileData(&fd);

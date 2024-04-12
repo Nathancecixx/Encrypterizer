@@ -39,10 +39,34 @@ namespace EncrypterizerTests
 
 		}
 
-		TEST_METHOD(REQ_ENC_001)
+		TEST_METHOD(REQ_ENC_002_ExecuteEncryptDecrypt)
 		{
+			FILE_DATA fd;
+			int argc = 5;
+			char* argv[] = { "./Encrypterizer", "Test.txt", "-E", "-P", "Password" };
+			InitFileData(&fd, argc, argv);
 
+			char** OG = new(char*);
+
+			Encrypt(&fd);
+			Decrypt(&fd);
+
+			// Compare the original and decrypted files to confirm they are identical
+			// ...
+
+			// Clean up
+			DestroyFileData(&fd);
 		}
+
+		TEST_METHOD(REQ_ENC_003_CleanExitOnError)
+		{
+			FILE_DATA* fd = nullptr;
+
+			// Pass a NULL pointer or an incorrectly typed pointer to the Encrypter functions
+			Assert::IsFalse(Encrypt(fd));
+			Assert::IsFalse(Decrypt(fd));
+		}
+
 	};
 	TEST_CLASS(RandomizerModule)
 	{

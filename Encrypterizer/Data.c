@@ -15,11 +15,6 @@
 
 bool InitFileData(FILE_DATA* fd, int argc, char* argv[]) {
 
-	if (argc > 6 || argc < 3) {
-		fprintf(stderr, "Error: Incorrect number of args\n");
-		return false;
-	}
-
 	// Initialize all attributes
 	fd->fileName = NULL;
 	fd->fileText = NULL;
@@ -30,6 +25,10 @@ bool InitFileData(FILE_DATA* fd, int argc, char* argv[]) {
 	fd->key_mode = EMPTY;
 	fd->copy_mode = EMPTY;
 
+	if (argc > 6 || argc < 3) {
+		fprintf(stderr, "Error: Incorrect number of args\n");
+		return false;
+	}
 
 	/*****************
 	 * Set File Name *
@@ -72,7 +71,7 @@ bool InitFileData(FILE_DATA* fd, int argc, char* argv[]) {
 	else if (fd->key_mode == GENERATE) {
 		// TODO:
 		//Fix pass generator
-		int passlength = 10;
+		int passlength = 11;
 		fd->key = (char*)malloc(sizeof(char) * passlength);
 		if (fd->key == NULL) {
 			return false;
